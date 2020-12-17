@@ -43,6 +43,20 @@ void stackDfs(vector<int> graph[], bool check[], int start)
 				check[nextNode] = true; //방문 표시
 				
 				s.push(currentNode); // ★왜 하는 거지?★
+
+				/*
+				DFS의 경우 자식 노드를 탐색할 수 있을때까지 탐색하고 다음 자식을 탐색하는 방법이 맞습니다.설명해주신 부분도 맞구요!
+				s.push(current_node)를 하는 이유는 "자식들을 다 탐색하고 자기자신으로 돌아와야 하기 때문"에 스택에 넣는겁니다.
+				a - b - d
+				 \
+				  c - e
+
+				이렇게 있다고 가정할 때 a를 먼저 스택에 push한 후 a를 pop합니다.
+				a는 현재 자식 b와 c가 있는데 b부터 탐색을 한다하면 b를 스택에 넣어야겠지요.
+				여기서 만약 a를 넣지 않는다면 b를 넣고 pop하고 자식을 봤더니 d가 있어서 다시 b를 넣지 않고 d만 넣는다면
+				다시 b->a 이렇게 돌아와야하는데 돌아오지 못합니다. 
+				즉, 돌아가지 못해 c와 e는 탐색도 하지 못하는 상황이 오게 되구요.
+				*/
 				s.push(nextNode); //그 다음 노드 push
 				break;
 			}
